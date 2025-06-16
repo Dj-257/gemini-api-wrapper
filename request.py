@@ -14,3 +14,14 @@ try:
     print(response.text)
 except requests.exceptions.RequestException as e:
     print(f"Error making request to /gemini: {e}")
+
+
+img_query = input("\nEnter your image query: ")
+img=input("Enter the image filename (without extension): ")
+try:
+    response = requests.get(f"{base_url}/gemini-image", params={"item": img_query, "image": img})
+    response.raise_for_status()
+    print(f"\nResponse from /gemini-image for '{img_query}' with image '{img}':")
+    print(response.text)
+except requests.exceptions.RequestException as e:
+    print(f"Error making request to /gemini-image: {e}")    
